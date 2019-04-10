@@ -8,7 +8,9 @@ module.exports = app => {
     {
       id: { type: INTEGER, primaryKey: true, autoIncrement: true },
       name: STRING(30),
-      age: INTEGER,
+      email: STRING(30),
+      pass: STRING,
+      // active: BOOLEAN,
       created_at: DATE,
       updated_at: DATE,
     },

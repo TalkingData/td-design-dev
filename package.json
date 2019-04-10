@@ -25,7 +25,9 @@
     "egg": "^2.6.1",
     "egg-scripts": "^2.6.0",
     "egg-sequelize": "^4.3.1",
-    "mysql2": "^1.6.5"
+    "mysql2": "^1.6.5",
+    "scrypt": "^6.0.3",
+    "validator": "^10.11.0"
   },
   "devDependencies": {
     "@types/mocha": "^2.2.40",
