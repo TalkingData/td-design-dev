@@ -4,11 +4,11 @@ import { Service } from 'egg';
 
 export default class Document extends Service {
   async findByPara(params) {
-    const user = await this.ctx.model.User.findAll(params);
-    if (!user) {
-      this.ctx.throw(404, 'user not found');
+    const document = await this.ctx.model.Document.findAll(params);
+    if (!document) {
+      this.ctx.throw(404, 'document not found');
     }
-    return user;
+    return document;
   }
 
   async create(document) {

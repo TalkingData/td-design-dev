@@ -4,11 +4,11 @@ import { Controller } from 'egg';
 // import * as validator from 'validator';
 
 export default class DocumentController extends Controller {
-  async show(id) {
+  async show() {
     const { ctx } = this;
     const document = await ctx.service.document.findByPara({
       where: {
-        id,
+        id: ctx.params.id,
       },
     });
     ctx.body = {
