@@ -14,12 +14,20 @@ export default (appInfo: EggAppInfo) => {
 
   // add your egg config in here
   config.middleware = [ 'userRequired' ];
-  config.adminRouter = [ '/api/document' ];
+  config.adminRouter = [ '/api/user' ];
+  // config.adminRouter = [ '/api/document' ];
 
   // add your special config in here
   const bizConfig = {
     sourceUrl: `https://github.com/eggjs/examples/tree/master/${appInfo.name}`,
   };
+  config.cors = {
+    origin: ctx => ctx.get('origin'),
+    // origin: '*',
+    allowMethods: 'GET,HEAD,PUT,POST,DELETE,PATCH',
+    credentials: true,
+  };
+  config.authSalt = 'KOG&';
 
   // // 添加mysql的配置
   // config.mysql = {

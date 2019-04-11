@@ -7,7 +7,7 @@ import * as validator from 'validator';
 export default class SignController extends Controller {
   // 登录
   async signIn() {
-    const { ctx } = this;
+    const { ctx, app } = this;
     const { name, pass } = ctx.request.body;
     let existUsers;
     if (validator.isEmail(name)) {
@@ -31,16 +31,18 @@ export default class SignController extends Controller {
       return;
     }
     const existUser = existUsers[0];
-    console.log('--------------start-------------');
-    console.log(pass, existUser.pass);
-    console.log('--------------end-------------');
 
     const passVerify = await ctx.helper.scryptVerify(pass, existUser.pass);
     if (passVerify) {
-      const token = await ctx.helper.scryptEncryption(name);
+      const token = await ctx.helper.scryptHash(name, new Buffer(app.config.authSalt));
       ctx.body = {
         status: 1,
-        data: { token },
+        data: {
+          Authorization: JSON.stringify({
+            user: name,
+            token,
+          }),
+        },
       };
     } else {
       ctx.body = {

@@ -23,4 +23,14 @@ const scryptVerify = async (pass, encryPass) =>
       console.log(err);
     },
   );
-export { validateId, scryptEncryption, scryptVerify };
+
+// scrypt hash for token
+const scryptHash = async (key, salt) =>
+  scrypt.hash(key, { N: 16, r: 1, p: 1 }, 64, salt).then(
+    result => result.toString('hex'),
+    err => {
+      console.log(err);
+    },
+  );
+
+export { validateId, scryptEncryption, scryptVerify, scryptHash };
