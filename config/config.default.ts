@@ -13,7 +13,8 @@ export default (appInfo: EggAppInfo) => {
   config.keys = appInfo.name + '_1554189200015_2950';
 
   // add your egg config in here
-  config.middleware = [];
+  config.middleware = [ 'userRequired' ];
+  config.adminRouter = [ '/api/document' ];
 
   // add your special config in here
   const bizConfig = {
