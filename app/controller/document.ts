@@ -20,7 +20,7 @@ export default class DocumentController extends Controller {
   // 新增或者更新
   async update() {
     const { ctx } = this;
-    const id = ctx.request.body.id;
+    const id = ctx.params.id;
     const content = ctx.request.body.content || '';
     const document = await ctx.service.document.upsert({
       id,
@@ -30,11 +30,5 @@ export default class DocumentController extends Controller {
       status: 1,
       data: document,
     };
-
-    // ctx.body = await ctx.service.document.findByPara({
-    //   where: {
-    //     id,
-    //   },
-    // });
   }
 }

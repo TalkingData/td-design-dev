@@ -2,12 +2,16 @@
 // Do not modify this file!!!!!!!!!
 
 import 'egg';
+import ExportComponent from '../../../app/model/component';
 import ExportDocument from '../../../app/model/document';
+import ExportUsage from '../../../app/model/usage';
 import ExportUser from '../../../app/model/user';
 
 declare module 'sequelize' {
   interface Sequelize {
+    Component: ReturnType<typeof ExportComponent>;
     Document: ReturnType<typeof ExportDocument>;
+    Usage: ReturnType<typeof ExportUsage>;
     User: ReturnType<typeof ExportUser>;
   }
 }

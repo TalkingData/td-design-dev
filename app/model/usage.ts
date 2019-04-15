@@ -3,10 +3,9 @@
 module.exports = app => {
   const { STRING, DATE, BIGINT } = app.Sequelize;
 
-  const Document = app.model.define(
-    'document',
+  const Usage = app.model.define(
+    'usage',
     {
-      // id: { type: INTEGER, },
       id: {
         type: BIGINT,
         primaryKey: true,
@@ -21,16 +20,10 @@ module.exports = app => {
       updated_at: DATE,
     },
     {
-      tableName: 'document',
+      tableName: 'usage',
     },
   );
 
-  // 同步:没有就新建,有就不变
-  Document.sync();
-  // 先删除后同步
-  // User.sync({
-  //   force: true,
-  // });
-
-  return Document;
+  Usage.sync();
+  return Usage;
 };
