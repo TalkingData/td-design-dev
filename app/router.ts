@@ -9,6 +9,7 @@ export default (app: Application) => {
   router.resources('component', '/api/component', controller.component);
   router.resources('document', '/api/document', controller.document);
   router.resources('usage', '/api/usage', controller.usage);
+  router.resources('code', '/api/code', controller.code);
   // router.get('/api/document', controller.document.index);
   // router.post('/api/document/:id', controller.document.upsert);
 };

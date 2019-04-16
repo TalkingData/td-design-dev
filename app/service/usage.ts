@@ -19,7 +19,7 @@ export default class Usage extends Service {
   async upsert({ id, updates }) {
     const usage = await this.ctx.model.Usage.findById(id);
     if (!usage) {
-      this.ctx.model.Usage.create(updates);
+      return this.ctx.model.Usage.create(updates);
     }
     return usage.update(updates);
   }

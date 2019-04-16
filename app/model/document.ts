@@ -1,7 +1,7 @@
 'use strict';
 
 module.exports = app => {
-  const { STRING, DATE, BIGINT } = app.Sequelize;
+  const { TEXT, DATE, BIGINT } = app.Sequelize;
 
   const Document = app.model.define(
     'document',
@@ -16,7 +16,7 @@ module.exports = app => {
           key: 'id',
         },
       },
-      content: STRING,
+      content: TEXT,
       created_at: DATE,
       updated_at: DATE,
     },
