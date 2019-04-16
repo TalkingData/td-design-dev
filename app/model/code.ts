@@ -16,8 +16,6 @@ module.exports = app => {
       },
       component_id: {
         type: BIGINT,
-        primaryKey: true,
-        unique: true,
         references: {
           model: 'component',
           key: 'id',
