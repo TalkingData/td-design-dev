@@ -11,6 +11,14 @@ export default class Document extends Service {
     return document;
   }
 
+  async find(id) {
+    const document = await this.ctx.model.Document.findById(id);
+    if (!document) {
+      this.ctx.throw(404, 'document not found');
+    }
+    return document;
+  }
+
   async create(document) {
     return this.ctx.model.Document.create(document);
   }
@@ -19,7 +27,7 @@ export default class Document extends Service {
   async upsert({ id, updates }) {
     const document = await this.ctx.model.Document.findById(id);
     if (!document) {
-      this.ctx.model.Document.create(updates);
+      return this.ctx.model.Document.create(updates);
     }
     return document.update(updates);
   }

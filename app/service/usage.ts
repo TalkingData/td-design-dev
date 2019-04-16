@@ -11,6 +11,13 @@ export default class Usage extends Service {
     return usage;
   }
 
+  async find(id) {
+    const usage = await this.ctx.model.Usage.findById(id);
+    if (!usage) {
+      this.ctx.throw(404, 'usage not found');
+    }
+    return usage;
+  }
   async create(usage) {
     return this.ctx.model.Usage.create(usage);
   }
