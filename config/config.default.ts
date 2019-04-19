@@ -14,7 +14,7 @@ export default (appInfo: EggAppInfo) => {
 
   // add your egg config in here
   config.middleware = [ 'userRequired' ];
-  config.adminRouter = [ '/api/user' ];
+  config.adminRouter = [];
   // config.adminRouter = [ '/api/document' ];
 
   // add your special config in here
