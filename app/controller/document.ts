@@ -8,7 +8,7 @@ export default class DocumentController extends Controller {
     const { ctx } = this;
     const document = await ctx.service.document.findByPara({
       where: {
-        id: ctx.params.id,
+        component_id: ctx.params.id,
       },
     });
     ctx.body = {
@@ -20,11 +20,15 @@ export default class DocumentController extends Controller {
   // 新增或者更新
   async update() {
     const { ctx } = this;
-    const id = ctx.params.id;
+    const component_id = ctx.params.id;
     const content = ctx.request.body.content || '';
     const document = await ctx.service.document.upsert({
-      id,
-      updates: { id, content },
+      params: {
+        where: {
+          component_id,
+        },
+      },
+      updates: { component_id, content },
     });
     ctx.body = {
       status: 1,

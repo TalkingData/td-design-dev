@@ -23,11 +23,16 @@ export default class Usage extends Service {
   }
 
   // 新增或者更新
-  async upsert({ id, updates }) {
-    const usage = await this.ctx.model.Usage.findById(id);
+  async upsert({ params, updates }) {
+    // const usage = await this.ctx.model.Usage.findById(id);
+    // if (!usage) {
+    //   return this.ctx.model.Usage.create(updates);
+    // }
+    // return usage.update(updates);
+    const usage = await this.ctx.model.Usage.findAll(params);
     if (!usage) {
       return this.ctx.model.Usage.create(updates);
     }
-    return usage.update(updates);
+    return this.ctx.model.Usage.update({ component_id: updates.component_id }, { $set: { content: updates.content } });
   }
 }

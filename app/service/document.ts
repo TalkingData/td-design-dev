@@ -24,11 +24,11 @@ export default class Document extends Service {
   }
 
   // 新增或者更新
-  async upsert({ id, updates }) {
-    const document = await this.ctx.model.Document.findById(id);
+  async upsert({ params, updates }) {
+    const document = await this.ctx.model.Document.findAll(params);
     if (!document) {
       return this.ctx.model.Document.create(updates);
     }
-    return document.update(updates);
+    return this.ctx.model.Document.update({ component_id: updates.component_id }, { $set: { content: updates.content } });
   }
 }

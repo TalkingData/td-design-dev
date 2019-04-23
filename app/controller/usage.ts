@@ -20,11 +20,15 @@ export default class UsageController extends Controller {
   // 新增或者更新
   async update() {
     const { ctx } = this;
-    const id = ctx.params.id;
+    const component_id = ctx.params.id;
     const content = ctx.request.body.content || '';
     const usage = await ctx.service.usage.upsert({
-      id,
-      updates: { id, content },
+      params: {
+        where: {
+          component_id,
+        },
+      },
+      updates: { component_id, content },
     });
     ctx.body = {
       status: 1,
