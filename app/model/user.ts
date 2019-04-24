@@ -10,6 +10,8 @@ module.exports = app => {
       name: STRING(30),
       email: STRING(30),
       pass: STRING,
+      // status 1=>普通用户 2=>超级管理员
+      status: { type: INTEGER, defaultValue: 1 },
       // active: BOOLEAN,
       created_at: DATE,
       updated_at: DATE,
