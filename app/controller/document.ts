@@ -6,9 +6,17 @@ import { Controller } from 'egg';
 export default class DocumentController extends Controller {
   async show() {
     const { ctx } = this;
+    const id = ctx.request.body.id;
+    if (!id) {
+      ctx.body = {
+        status: 0,
+        msg: '请传递对应的ID!',
+      };
+      return;
+    }
     const document = await ctx.service.document.findByPara({
       where: {
-        component_id: ctx.params.id,
+        component_id: ctx.request.body.id,
       },
     });
     ctx.body = {
@@ -20,7 +28,7 @@ export default class DocumentController extends Controller {
   // 新增或者更新
   async update() {
     const { ctx } = this;
-    const component_id = ctx.params.id;
+    const component_id = parseInt(ctx.request.body.id);
     const content = ctx.request.body.content || '';
     const document = await ctx.service.document.upsert({
       params: {

@@ -61,7 +61,7 @@ export default class UserController extends Controller {
       email,
       pass: passEncryption,
     });
-    ctx.status = 201;
+    ctx.status = 200;
     ctx.body = {
       status: 1,
       data: user,

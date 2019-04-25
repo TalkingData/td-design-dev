@@ -25,10 +25,6 @@ module.exports = app => {
       },
       component_id: {
         type: BIGINT,
-        references: {
-          model: 'component',
-          key: 'id',
-        },
       },
       content: TEXT,
       created_at: DATE,

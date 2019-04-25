@@ -30,7 +30,7 @@ export default class Usage extends Service {
     // }
     // return usage.update(updates);
     const usage = await this.ctx.model.Usage.findAll(params);
-    if (!usage) {
+    if (usage.length === 0) {
       return this.ctx.model.Usage.create(updates);
     }
     return this.ctx.model.Usage.update({ component_id: updates.component_id }, { $set: { content: updates.content } });

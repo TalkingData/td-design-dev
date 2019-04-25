@@ -23,7 +23,7 @@ export default class SignController extends Controller {
         },
       });
     }
-    if (!existUsers) {
+    if (existUsers.length === 0) {
       ctx.body = {
         status: 0,
         message: '用户不存在',
@@ -31,7 +31,6 @@ export default class SignController extends Controller {
       return;
     }
     const existUser = existUsers[0];
-
     const passVerify = await ctx.helper.scryptVerify(pass, existUser.pass);
     if (passVerify) {
       const token = await ctx.helper.scryptHash(name, new Buffer(app.config.authSalt));

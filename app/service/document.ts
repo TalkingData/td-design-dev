@@ -26,7 +26,7 @@ export default class Document extends Service {
   // 新增或者更新
   async upsert({ params, updates }) {
     const document = await this.ctx.model.Document.findAll(params);
-    if (!document) {
+    if (document.length === 0) {
       return this.ctx.model.Document.create(updates);
     }
     return this.ctx.model.Document.update({ component_id: updates.component_id }, { $set: { content: updates.content } });
