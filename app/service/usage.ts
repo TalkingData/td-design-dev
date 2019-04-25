@@ -33,6 +33,14 @@ export default class Usage extends Service {
     if (usage.length === 0) {
       return this.ctx.model.Usage.create(updates);
     }
-    return this.ctx.model.Usage.update({ component_id: updates.component_id }, { $set: { content: updates.content } });
+    return this.ctx.model.Usage.update(
+      {
+        content : updates.content,
+      },
+      {
+        where : {
+          component_id : updates.component_id,
+        },
+      });
   }
 }

@@ -28,7 +28,7 @@ export default class DocumentController extends Controller {
   // 新增或者更新
   async update() {
     const { ctx } = this;
-    const component_id = parseInt(ctx.request.body.id);
+    const component_id = ctx.request.body.id;
     const content = ctx.request.body.content || '';
     const document = await ctx.service.document.upsert({
       params: {

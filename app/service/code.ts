@@ -24,4 +24,19 @@ export default class Code extends Service {
     return this.ctx.model.Code.create(code);
   }
 
+  async update(code) {
+    const code_id = code.code_id;
+    return this.ctx.model.Code.update(
+      {
+        title : code.title,
+        desc : code.desc,
+        content : code.content,
+      },
+      {
+        where : {
+          id : code_id,
+        },
+      });
+  }
+
 }

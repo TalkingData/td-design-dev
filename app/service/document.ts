@@ -29,6 +29,14 @@ export default class Document extends Service {
     if (document.length === 0) {
       return this.ctx.model.Document.create(updates);
     }
-    return this.ctx.model.Document.update({ component_id: updates.component_id }, { $set: { content: updates.content } });
+    return this.ctx.model.Document.update(
+      {
+        content : updates.content,
+      },
+      {
+        where : {
+          component_id : updates.component_id,
+        },
+      });
   }
 }
