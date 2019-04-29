@@ -5,7 +5,11 @@ export default (app: Application) => {
 
   router.get('/', controller.home.index);
   router.post('/api/login', controller.sign.signIn);
-  router.resources('user', '/api/user', controller.user);
+  router.post('/api/user/register', controller.user.create);
+  // 鉴权
+  router.post('/api/user/auth', controller.auth.findUserId);
+  // 获取用户信息
+  router.post('/api/user/get', controller.user.show);
   // 组件
   router.post('/api/component/create', controller.component.create);
   router.post('/api/component', controller.component.index);

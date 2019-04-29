@@ -1,12 +1,17 @@
 'use strict';
-
+import { Snowflake } from 'node-snowflake';
 module.exports = app => {
-  const { STRING, INTEGER, DATE } = app.Sequelize;
+  const { STRING, INTEGER, DATE, BIGINT } = app.Sequelize;
 
   const User = app.model.define(
     'user',
     {
-      id: { type: INTEGER, primaryKey: true, autoIncrement: true },
+      id: {
+        type: BIGINT,
+        primaryKey: true,
+        unique: true,
+        defaultValue: Snowflake.nextId,
+      },
       name: STRING(30),
       email: STRING(30),
       pass: STRING,

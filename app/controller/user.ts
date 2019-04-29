@@ -10,8 +10,18 @@ export default class UserController extends Controller {
   }
 
   async show() {
-    const ctx = this.ctx;
-    ctx.body = await ctx.service.user.find(ctx.helper.parseInt(ctx.params.id));
+    const user = await this.ctx.service.user.check(this.ctx);
+    if (user) {
+      this.ctx.body = {
+        status: 1,
+        data: user,
+      };
+    } else {
+      this.ctx.body = {
+        status: 0,
+        message: '暂无此用户',
+      };
+    }
   }
 
   async create() {

@@ -39,6 +39,14 @@ export default class ComponentController extends Controller {
     const { ctx } = this;
     const label = ctx.request.body.label || '';
     const text = ctx.request.body.text || '';
+    const userInfo = await ctx.service.user.check(ctx);
+    if (!userInfo || userInfo && userInfo.status !== 2) {
+      ctx.body = {
+        status: 0,
+        data: '你没有创建权限',
+      };
+      return;
+    }
     const component = await ctx.service.component.create({
       label,
       text,

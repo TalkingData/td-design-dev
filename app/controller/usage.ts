@@ -22,6 +22,14 @@ export default class UsageController extends Controller {
     const { ctx } = this;
     const component_id = ctx.request.body.id;
     const content = ctx.request.body.content || '';
+    const userInfo = await ctx.service.user.check(ctx);
+    if (!userInfo || userInfo && userInfo.status !== 2) {
+      ctx.body = {
+        status: 0,
+        data: '你没有创建权限',
+      };
+      return;
+    }
     const usage = await ctx.service.usage.upsert({
       params: {
         where: {
